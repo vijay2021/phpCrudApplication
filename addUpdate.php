@@ -3,17 +3,24 @@ require_once('includes/header.php');
 include_once('classes/Crud.php');
 include_once('classes/Validation.php');
 
+//initaiting crud class object.
 $crud = new Crud();
-//echo '<pre>'; print_r($_POST); exit;
+
+//here we can define input valid.
 $name = "";
 $age = "";
 $email = "";
 
+//bootstrap error class. we will pass value here dynamically.
 $errorClass = "";
 
 if(isset($_POST['addUpdate'])){
+	
+	//initaiting validation class object.	
 	$validation = new Validation();
 	
+	
+	// checking all form field for empty check
 	$checkField = $validation->checkFields($_POST,array('name','age','email'));
 		
 	$id = $crud->escape_string($_POST['id']);
@@ -21,10 +28,14 @@ if(isset($_POST['addUpdate'])){
 	$age = $crud->escape_string($_POST['age']);
 	$email = $crud->escape_string($_POST['email']);
 	
+	// checking valid age
 	$ageCheck = $validation->isValidAge($_POST['age']);
+	
+	// checking valid email
 	$emailCheck = $validation->isValidEmail($_POST['email']);
 	
 	$errorMessage = "";
+	// in case of error, we are calling bootstrap error classes. 
 	$errorClass = "alert alert-danger";
 	if($checkField){
 		$errorMessage = $checkField;
@@ -36,7 +47,7 @@ if(isset($_POST['addUpdate'])){
 		
 		
 		$sql = "";
-		
+			
 		if($id==''){
 			$sql .= "INSERT INTO users SET ";
 			$sucMessage = "inserted";
@@ -51,9 +62,10 @@ if(isset($_POST['addUpdate'])){
 		if($id!=''){
 			$sql .= " where id='".$id."'";
 		}
-		//echo $sql;
+		//running add/update query
 		if($crud->execute($sql)){
 			$errorMessage = "your record successfully ".$sucMessage;
+			// in case of error, we are calling bootstrap success classes. 
 			$errorClass = "alert alert-success";
 		}
 		
@@ -65,7 +77,7 @@ if(isset($_POST['addUpdate'])){
 	
 	
 }else if(isset($_GET['id']) && $_GET['id']!=''){
-	
+	// in case of url id, we are showing list of users. 
 	$query = "SELECT * from users where id='".$_GET['id']."'";
 	$users = $crud->getData($query);	
 	

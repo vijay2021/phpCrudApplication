@@ -1,6 +1,7 @@
 <?php 
 class Validation{
 	
+	//we can use this function for checking empty values of form fields.
 	public function checkFields($data, $fields){
 		$message = null;
 		
@@ -13,6 +14,7 @@ class Validation{
 		return $message;
 	}
 	
+	// this one we can use for checking valid email or not.
 	public function isValidEmail($email)
 	{
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -22,6 +24,7 @@ class Validation{
 	}
 	
 	
+	//this one we can use for valid age or not.
 	public function isValidAge($age)
 	{
 		if(preg_match("/^[0-9]+$/", $age)){

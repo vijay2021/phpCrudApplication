@@ -1,13 +1,16 @@
 <?php
+// adding database class
 include_once 'Database.php';
 
 class Crud extends Database
-{
+{	
+	// constror call
 	public function __construct()
 	{
 		parent::__construct();
 	}
 	
+	// for get data as per query
 	public function getData($query)
 	{		
 		$result = $this->connection->query($query);
@@ -25,6 +28,7 @@ class Crud extends Database
 		return $rows;
 	}
 		
+	//here we can use insert or update data	
 	public function execute($query) 
 	{
 		$result = $this->connection->query($query);
@@ -37,6 +41,7 @@ class Crud extends Database
 		}		
 	}
 	
+	//we can use this for delete data.
 	public function delete($id, $table) 
 	{ 
 		$query = "DELETE FROM $table WHERE id = $id";

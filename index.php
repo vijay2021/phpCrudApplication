@@ -1,8 +1,11 @@
 <?php 
 require_once('includes/header.php'); 
 include_once('classes/Crud.php');
+
+// initiating crud object
 $crud = new Crud();
 
+// in case of delID available, we are deleting record. 
 if(isset($_GET['delID']) && $_GET['delID']!=''){
 	if($crud->delete($_GET['delID'],'users')){
 		header('location:index.php?suc');
@@ -15,7 +18,6 @@ if(isset($_GET['delID']) && $_GET['delID']!=''){
 
 $query = "SELECT * from users";
 $users = $crud->getData($query);
-//echo '<pre>'; print_r($users); exit;
 ?>
 <div class="container">
   <br>
