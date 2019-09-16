@@ -1,0 +1,14 @@
+.title {
+	background-color: #e3e3e3;
+}
+
+.mt-title {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.container {
+    margin-top: 50px;
+    box-shadow: 0 0 30px black;
+    padding:0 15px 15px 15px;
+}

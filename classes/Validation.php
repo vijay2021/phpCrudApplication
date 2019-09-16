@@ -5,7 +5,7 @@ class Validation{
 		$message = null;
 		
 		foreach($fields as $field){
-			if(empty($data[$filed])){
+			if(empty($data[$field])){
 				$message .= "$field field is empty<br/>.";
 			}
 		}
@@ -18,7 +18,7 @@ class Validation{
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			return true;
 		}
-		return true;	
+		return false;	
 	}
 	
 	
@@ -27,7 +27,7 @@ class Validation{
 		if(preg_match("/^[0-9]+$/", $age)){
 			return true;
 		}
-		return true;	
+		return false;	
 	}
 	
 }

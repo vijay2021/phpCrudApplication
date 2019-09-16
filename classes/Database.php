@@ -1,29 +1,26 @@
 <?php 
 class Database{
-	private $host = "localhost:7080";
-	private $username = "root";
-	private $password = "";
-	private $db = "crudApp";
+	private $_host = 'localhost:3309';
+	private $_username = 'root';
+	private $_password = '';
+	private $_database = 'crudapp';
 	
-	protected $conn;
+	protected $connection;
 	
-	
-	public __construct(){
+	public function __construct()
+	{
+		if (!isset($this->connection)) {
+			
+			$this->connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
+			
+			if (!isset($this->connection)) {
+				echo 'Cannot connect to database server';
+				exit;
+			}			
+		}	
 		
-		if(!isset($this->conn)){
-			
-			$this->conn = new mysqli($this->host, $this->username, $this->password, $this->db);
-			
-			if(!isset($this->conn)){
-				echo  "There is some problem in database connection.";				
-				exit();
-			}
-			
-		}
-		
-		return $this->conn;
+		return $this->connection;
 	}
-	
 	
 }
 
